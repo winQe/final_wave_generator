@@ -1,0 +1,3 @@
+waveType=1
+frequency=28.00
+amplitude=0.88
