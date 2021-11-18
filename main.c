@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     int daqEnable = 0;
     unsigned int i;
     char **p_to_arg=&argv[1];
-   
+    
 //Initializing default settings	
 inputs.amp = DEFAULT_AMPLITUDE;  
 inputs.freq = DEFAULT_FREQUENCY;																							
@@ -82,8 +82,8 @@ inputs.freq = DEFAULT_FREQUENCY;
                     "-w Specific Type of Wave to be output.\n"
                     "-f Specify the Frequency of the wave in Hertz (Hz).\n"
                     "-a Specify the Amplitude of the wave in Volt (V).\n"
-                    "-l Load previously saved parameters from config.txt\n"
-                    "-d Enable input from potentiometer and toggle switches\n"
+                    "-l Load previously saved parameters from config.txt (All other arguments will be disregarded)\n"
+                    "-d Enable input from potentiometer and toggle switches (All other arguments will be disregarded)\n"
                     "-? Show this message\n\n");
                 exit(0);
             case 'w': //Read wave type and store in a struct
@@ -124,24 +124,24 @@ inputs.freq = DEFAULT_FREQUENCY;
             case 'l': //Load previously saved config files
                 read_config("config.txt", &inputs);
                 configLoaded = 1;
+                daqEnable = 0;
                 continue;
             case 'd': //Enable input from DAS Board
                 daqEnable = 1;
+                configLoaded = 0;
                 continue;
             default:printf("'%s' Invalid option. Use '-?' for help.\n", (*p_to_arg));exit(1); 
             }
-        if (configLoaded == 1) break;
+        if (configLoaded == 1 or daqEnable == 1) break;
         p_to_arg++;
     }
     //
-    if (specifier_given == 1) { //Print the parameters if specified in the arguments
-        printf("Wave Type     : %d\nWave Frequency   : %f\nWave Amplitude: %f\n", inputs.waveType, inputs.freq, inputs.amp);
-    }
+    
     //Print the welcome message for default mode (keyboard input)
-    if (specifier_given == 0 && daqEnable==0) {
+    if (daqEnable==0) {
         printf( 
         "\nMA4830 CA 2: Multi Wave Generator : Keyboard Input MODE\n"
-        "Author: Andhika Satriya Bhayangkara, Chan Yee Hang Caleb, Gabriel James Goenawan, Yap Choon Kai Jonathan \n");
+        "Author: Andhika Satriya Bhayangkara, Chan Yee Hang Caleb, Gabriel James Goenawan, Yap Choon Kai Jonathan\n");
         printf(
         "\n\nW,A,S,D to move / change value\n"
         "Enter to select the current option\n\n\n");
@@ -159,6 +159,9 @@ inputs.freq = DEFAULT_FREQUENCY;
         "Enter to select the current option\n\n\n");
     }
 
+    if (specifier_given == 1) { //Print the parameters if specified in the arguments
+        printf("Wave Type     : %d\nWave Frequency   : .2%f\nWave Amplitude: .2%f\n", inputs.waveType, inputs.freq, inputs.amp);
+    }
     //Initialize program start countdown
         for (i = start_program; i > 0; i--) {
             if (i == start_program) {
