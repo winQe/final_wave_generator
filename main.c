@@ -59,48 +59,10 @@ int main(int argc, char *argv[]) {
     int daqEnable = 0;
     unsigned int i;
     char **p_to_arg=&argv[1];
-
-/*
-//**********************************************************************************************
-// Setting up PCI-DAS1602/16 Board
-//**********************************************************************************************    
-    void *hdl;
-
-    #if defined(__QNX__)
-		struct pci_dev_info info;
-        memset(&info,0,sizeof(info));
-        if(pci_attach(0)<0) {
-            perror("pci_attach");
-            exit(EXIT_FAILURE);}
-
-        info.VendorId=0x1307;
-        info.DeviceId=0x01;
-
-        if ((hdl=pci_attach_device(0, PCI_SHARE|PCI_INIT_ALL, 0, &info))==0) {
-            perror("pci_attach_device");
-            exit(EXIT_FAILURE);}	
-
-        for(i=0;i<5;i++) {
-            badr[i]=PCI_IO_ADDR(info.CpuBaseAddress[i]);
-            iobase[i]=mmap_device_io(0x0f,badr[i]);	}	
-        
-        if(ThreadCtl(_NTO_TCTL_IO,0)==-1) {
-            perror("Thread Control");
-            exit(1);}			
-        
-        // Initialise Board
-        out16(INTERRUPT,0x60c0);				    // sets interrupts	 - Clears
-        out16(TRIGGER,0x2081);					// sets trigger control: 10MHz, clear, Burst off,SW trig. default:20a0
-        out16(AUTOCAL,0x007f);					// sets automatic calibration : default
-
-        out16(AD_FIFOCLR,0); 						// clear ADC buffer
-        out16(MUXCHAN,0x0D00);          // previous group select 0x0C10
-    #endif
-    */
    
-    //Initializing default settings	
-    inputs.amp = DEFAULT_AMPLITUDE;  
-    inputs.freq = DEFAULT_FREQUENCY;																							
+//Initializing default settings	
+inputs.amp = DEFAULT_AMPLITUDE;  
+inputs.freq = DEFAULT_FREQUENCY;																							
    		
 //**********************************************************************************************
 // Parsing Comand Line Arguments
