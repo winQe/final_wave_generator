@@ -1,6 +1,6 @@
 #include <pthread.h>
 
-#define start_program 2
+#define start_program 2 //Program countdown
 #define DEFAULT_AMPLITUDE 1
 #define DEFAULT_FREQUENCY 5
 #define DEFAULT_DELAY_MULTIPLIER 150
@@ -36,6 +36,8 @@ pthread_mutex_t mutex;
 // threads id creation
 pthread_t t_id[2];
 
+//Define the functions
+
 int checkUserInput(char* parameter, int type);
 char* getconfig(char* file,char* config);
 void read_config(char *fileName, input *paramptr);
@@ -62,4 +64,3 @@ int triangularWave(int i, int n, float a);
 
 void readswitch(input *paramsptr);
 void readpot(input *paramsptr );
-
