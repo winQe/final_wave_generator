@@ -7,11 +7,11 @@ all:
 	then \
 		rm ${EXE}; \
 	fi;
-	cc -o ${EXE} main.c threads.c ncurses.c waveform.c miscfunc.c -lm -lncurses -lpthread
+	cc -o ${EXE} main.c threads.c ncurses.c waveform.c miscfunc.c -lm -lncurses
 	./${EXE}
 
 compile: 
-	cc -o ${EXE} main.c threads.c ncurses.c waveform.c miscfunc.c -lm -lncurses -lpthread
+	cc -o ${EXE} main.c threads.c ncurses.c waveform.c miscfunc.c -lm -lncurses
 
 run:
 	./${EXE}
