@@ -81,8 +81,8 @@ inputs.freq = DEFAULT_FREQUENCY;
                     "Functions:\n\n"
                     "-w Specific Type of Wave to be output.\n"
                     "-f Specify the Frequency of the wave in Hertz (Hz).\n"
-                    "-a Specify the Amplitude of the wave in millivolt (mV).\n"
-                    "-l Load previously saved parameters from config.tx\n"
+                    "-a Specify the Amplitude of the wave in Volt (V).\n"
+                    "-l Load previously saved parameters from config.txt\n"
                     "-d Enable input from potentiometer and toggle switches\n"
                     "-? Show this message\n\n");
                 exit(0);
