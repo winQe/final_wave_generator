@@ -132,7 +132,7 @@ inputs.freq = DEFAULT_FREQUENCY;
                 continue;
             default:printf("'%s' Invalid option. Use '-?' for help.\n", (*p_to_arg));exit(1); 
             }
-        if (configLoaded == 1 or daqEnable == 1) break;
+        if (configLoaded == 1 || daqEnable == 1) break;
         p_to_arg++;
     }
     //

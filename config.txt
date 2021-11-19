@@ -1,3 +1,3 @@
-waveType=1
-frequency=28.00
-amplitude=0.88
+waveType=3
+frequency=15.00
+amplitude=1.37
